@@ -1,0 +1,96 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3ds · kidnap.lol</title>
+    <link rel="icon" type="image/png" href="https://kidnap.lol/resources/default/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+    <meta property="og:title" content="3ds · kidnap.lol">
+    <meta property="og:url" content="https://kusanagi.vip/3ds">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="kidnap.lol">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="3ds · kidnap.lol">
+    <meta name="twitter:image" content="https://kidnap.lol/3ds/images/fashion.gif">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="entry-overlay" id="entryOverlay">
+        <div class="overlay-content">
+            <h2 class="entry-text">Click to enter</h2>
+        </div>
+    </div>
+    <div class="loading-spinner" id="loadingSpinner"></div>
+
+    <div class="main-content" id="mainContent">
+        <div class="main-wrapper">
+            <div class="scene">
+                <div class="container-3d" id="container3d">
+                    <section class="hero">
+                        <div class="profile-pic">
+                            <img src="images/fashion.gif" alt="fashion profile">
+                        </div>
+                        <h1 class="username">
+                            <span class="typewriter">3ds</span>
+                        </h1>
+                        <div class="profile-views">
+                            <span class="views-count">owner</span>@ kidnap.lol
+                        </div>
+                        <div class="badges-container">
+                            <div class="profile-badges">
+                                <div class="badge-wrapper">
+                                    <img src="images/Verified.svg" alt="Verified" class="verified-badge">
+                                    <span class="badge-tooltip">Verified Profile</span>
+                                </div>
+                                <div class="badge-wrapper">
+                                    <img src="images/developer.png" alt="Developer" class="early-badge">
+                                    <span class="badge-tooltip">Developer</span>
+                                </div>
+                                <div class="badge-wrapper">
+                                    <img src="images/staff.png" alt="Staff" class="staff-badge">
+                                    <span class="badge-tooltip">Staff Member</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-links">
+                            <div class="contact-item static-contact">
+                                <span class="contact-icon"><i class="fab fa-discord"></i></span>
+                                <span class="contact-text">commensurable</span>
+                            </div>
+                            <div class="contact-item static-contact">
+                                <span class="contact-icon"><i class="fab fa-tiktok"></i></span>
+                                <span class="contact-text">indicate</span>
+                            </div>
+                            <a href="https://discord.gg/common" target="_blank" rel="noopener noreferrer" class="contact-item">
+                                <span class="contact-icon"><i class="fab fa-discord"></i></span>
+                                <span class="contact-text">/common</span>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="cursor-glow" id="cursorGlow"></div>
+
+        <audio id="bgMusic" loop preload="auto">
+            <source src="media/fashion.mp3" type="audio/mpeg">
+        </audio>
+        <video id="bgVideo" loop muted playsinline preload="auto">
+            <source src="media/fashion.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script src="js/init.js"></script>
+    <script src="js/3d.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/snow.js"></script>
+</body>
+</html>
