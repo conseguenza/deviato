@@ -787,3 +787,159 @@ body.dark .grid-canvas {
         right: -10px;
     }
 }
+
+/* Add these styles to your existing styles.css */
+
+/* Username link styling */
+.username-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.username-link:hover {
+    opacity: 0.8;
+}
+
+/* Status indicator on PFP */
+.profile-pic-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.profile-pic {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: var(--glass-white);
+    backdrop-filter: blur(12px);
+    border: 2px solid var(--glass-border-light);
+    box-shadow: var(--shadow-light);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    margin-bottom: 0;
+}
+
+.profile-pic:hover {
+    transform: scale(1.02);
+}
+
+body.dark .profile-pic {
+    background: var(--glass-dark);
+    border: 2px solid var(--glass-border-dark);
+    box-shadow: var(--shadow-dark);
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Status indicator bubble - bottom right of PFP */
+.status-indicator {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--glass-white);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+body.dark .status-indicator {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Status colors */
+.status-indicator.online i { color: #23a55a; }
+.status-indicator.idle i { color: #f0b232; }
+.status-indicator.dnd i { color: #f13f43; }
+.status-indicator.offline i { color: #80848e; }
+.status-indicator.streaming i { color: #593695; }
+
+.status-indicator i {
+    font-size: 12px;
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+}
+
+/* Activity tooltip on hover */
+.status-indicator {
+    cursor: pointer;
+}
+
+.status-tooltip {
+    position: absolute;
+    bottom: 130%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    color: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 20;
+    font-family: 'Inter', monospace;
+    letter-spacing: 0;
+}
+
+.status-indicator:hover .status-tooltip {
+    opacity: 1;
+}
+
+/* 3D Grid Canvas */
+.grid-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+body.dark .grid-canvas {
+    opacity: 0.25;
+}
+
+/* Responsive adjustments */
+@media (max-width: 580px) {
+    .profile-pic {
+        width: 75px;
+        height: 75px;
+    }
+    .status-indicator {
+        width: 18px;
+        height: 18px;
+        bottom: 2px;
+        right: 2px;
+    }
+    .status-indicator i {
+        font-size: 9px;
+    }
+    .status-tooltip {
+        font-size: 9px;
+        white-space: nowrap;
+        right: -10px;
+    }
+}

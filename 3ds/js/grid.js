@@ -1,5 +1,4 @@
 // js/grid.js
-// 3D Grid of lines with 1mm equivalent distance (scaled for screen)
 (function() {
     const canvas = document.getElementById('gridCanvas');
     if (!canvas) return;
@@ -9,11 +8,8 @@
     let animationId = null;
     let time = 0;
     
-    // Grid spacing in pixels (simulating ~1mm at typical viewing distance)
-    // On a 96dpi screen, 1mm ≈ 3.78px. We'll use 4px for crisp rendering.
     const GRID_SPACING = 4;
     
-    // Parallax effect intensity
     let mouseX = 0;
     let mouseY = 0;
     let targetOffsetX = 0;
@@ -33,14 +29,12 @@
         if (!ctx) return;
         ctx.clearRect(0, 0, width, height);
         
-        // Apply subtle parallax shift
         const shiftX = currentOffsetX * 0.5;
         const shiftY = currentOffsetY * 0.3;
         
         ctx.save();
         ctx.translate(shiftX, shiftY);
         
-        // Draw vertical lines
         ctx.beginPath();
         ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--glass-border-light').trim() || 'rgba(255,255,255,0.15)';
         ctx.lineWidth = 0.8;
@@ -53,7 +47,6 @@
             ctx.stroke();
         }
         
-        // Draw horizontal lines
         const startY = Math.floor(shiftY % GRID_SPACING) - GRID_SPACING;
         for (let y = startY; y < height + GRID_SPACING; y += GRID_SPACING) {
             ctx.beginPath();
@@ -62,7 +55,6 @@
             ctx.stroke();
         }
         
-        // Draw subtle center axis highlight (optional)
         ctx.beginPath();
         ctx.strokeStyle = 'rgba(255,255,255,0.08)';
         ctx.lineWidth = 1;
@@ -76,13 +68,11 @@
     }
     
     function animateGrid() {
-        // Smooth follow for parallax
         currentOffsetX += (targetOffsetX - currentOffsetX) * 0.08;
         currentOffsetY += (targetOffsetY - currentOffsetY) * 0.08;
         
         drawGrid();
         
-        // Subtle pulse based on time (very faint breathing effect)
         if (ctx) {
             ctx.save();
             ctx.globalCompositeOperation = 'source-over';
@@ -96,23 +86,13 @@
     }
     
     function onMouseMove(e) {
-        // Convert mouse position to normalized range (-1 to 1)
         const normX = (e.clientX / width) * 2 - 1;
         const normY = (e.clientY / height) * 2 - 1;
-        // Max shift in pixels (about 15px max)
         targetOffsetX = normX * 12;
         targetOffsetY = normY * 8;
     }
     
-    function onThemeChange() {
-        // Redraw when theme changes to update line color
-        drawGrid();
-    }
-    
-    // Watch for theme changes
-    const observer = new MutationObserver(() => {
-        drawGrid();
-    });
+    const observer = new MutationObserver(() => drawGrid());
     observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
     
     window.addEventListener('resize', () => {
