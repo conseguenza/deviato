@@ -1,31 +1,31 @@
 // js/init.js
 (function(){
-    const a = document.getElementById('entryOverlay');
-    const b = document.getElementById('mainContent');
-    const c = document.getElementById('loadingSpinner');
-    const d = document.getElementById('bgMusic');
-    const e = document.getElementById('bgVideo');
+    const overlay = document.getElementById('entryOverlay');
+    const mainContent = document.getElementById('mainContent');
+    const spinner = document.getElementById('loadingSpinner');
+    const audio = document.getElementById('bgMusic');
+    const video = document.getElementById('bgVideo');
     
-    function f(){
-        c.classList.add('visible');
+    function enterSite(){
+        spinner.classList.add('visible');
         setTimeout(() => {
-            c.classList.remove('visible');
-            b.classList.add('visible');
-            a.classList.add('hide');
+            spinner.classList.remove('visible');
+            mainContent.classList.add('visible');
+            overlay.classList.add('hide');
             
-            if(d){
-                d.currentTime = 0;
-                if(e) e.currentTime = 0;
-                d.play().catch(g => console.log(g));
+            if(audio){
+                audio.currentTime = 0;
+                if(video) video.currentTime = 0;
+                audio.play().catch(err => console.log(err));
             }
             
             setTimeout(() => {
-                a.style.display = 'none';
+                overlay.style.display = 'none';
             }, 500);
         }, 800);
     }
     
-    if(a){
-        a.addEventListener('click', f);
+    if(overlay){
+        overlay.addEventListener('click', enterSite);
     }
 })();

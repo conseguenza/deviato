@@ -32,11 +32,16 @@
             <div class="scene">
                 <div class="container-3d" id="container3d">
                     <section class="hero">
-                        <div class="profile-pic">
-                            <img src="images/fashion.gif" alt="fashion profile">
+                        <div class="profile-pic-wrapper">
+                            <div class="profile-pic" id="profilePic">
+                                <img id="avatarImg" src="images/fashion.gif" alt="fashion profile">
+                            </div>
+                            <div class="status-indicator" id="statusIndicator">
+                                <i class="fas fa-circle"></i>
+                            </div>
                         </div>
                         <h1 class="username">
-                            <span class="typewriter">3ds</span>
+                            <span class="typewriter" id="discordUsername">3ds</span>
                         </h1>
                         <div class="profile-views">
                             <span class="views-count">owner</span>@ kidnap.lol
@@ -61,7 +66,7 @@
                         <div class="contact-links">
                             <div class="contact-item static-contact">
                                 <span class="contact-icon"><i class="fab fa-discord"></i></span>
-                                <span class="contact-text">commensurable</span>
+                                <span class="contact-text" id="discordTag">commensurable</span>
                             </div>
                             <div class="contact-item static-contact">
                                 <span class="contact-icon"><i class="fab fa-tiktok"></i></span>
@@ -87,10 +92,15 @@
         </video>
     </div>
 
+    <!-- 3D Grid Canvas -->
+    <canvas id="gridCanvas" class="grid-canvas"></canvas>
+
     <script src="js/init.js"></script>
     <script src="js/3d.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/audio.js"></script>
     <script src="js/snow.js"></script>
+    <script src="js/discord.js"></script>
+    <script src="js/grid.js"></script>
 </body>
 </html>

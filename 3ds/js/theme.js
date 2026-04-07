@@ -1,49 +1,49 @@
 // js/theme.js
 (function(){
-    const a = () => localStorage.getItem('theme');
-    const b = (c) => {
-        const d = document.documentElement;
-        if(c === 'dark'){
-            d.classList.add('dark');
+    const getStoredTheme = () => localStorage.getItem('theme');
+    const setTheme = (theme) => {
+        const html = document.documentElement;
+        if(theme === 'dark'){
+            html.classList.add('dark');
             document.body.classList.add('dark');
             localStorage.setItem('theme', 'dark');
         } else {
-            d.classList.remove('dark');
+            html.classList.remove('dark');
             document.body.classList.remove('dark');
             localStorage.setItem('theme', 'light');
         }
+        // Update theme toggle icon after theme change
+        updateThemeIcon();
     };
     
-    const c = a();
-    const d = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if(c === 'dark' || (!c && d)){
-        b('dark');
+    const updateThemeIcon = () => {
+        const themeToggle = document.querySelector('.theme-toggle');
+        if(!themeToggle) return;
+        const isDark = document.body.classList.contains('dark');
+        themeToggle.innerHTML = isDark ? '<i class="fas fa-sun" style="font-size: 1.2rem;"></i>' : '<i class="fas fa-moon" style="font-size: 1.2rem;"></i>';
+    };
+    
+    const stored = getStoredTheme();
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if(stored === 'dark' || (!stored && prefersDark)){
+        setTheme('dark');
     } else {
-        b('light');
+        setTheme('light');
     }
     
-    let e = document.querySelector('.theme-toggle');
-    if(!e){
-        e = document.createElement('div');
-        e.className = 'theme-toggle';
-        document.body.appendChild(e);
-    }
+    // Remove existing theme toggle if any
+    const existingToggle = document.querySelector('.theme-toggle');
+    if(existingToggle) existingToggle.remove();
     
-    const f = () => {
-        const g = document.body.classList.contains('dark');
-        e.innerHTML = g ? '<i class="fas fa-sun" style="font-size: 1.2rem;"></i>' : '<i class="fas fa-moon" style="font-size: 1.2rem;"></i>';
-    };
+    // Create theme toggle button
+    const themeToggle = document.createElement('div');
+    themeToggle.className = 'theme-toggle';
+    document.body.appendChild(themeToggle);
+    updateThemeIcon();
     
-    f();
-    
-    const h = e.cloneNode(true);
-    e.parentNode.replaceChild(h, e);
-    const i = h;
-    
-    i.addEventListener('click', (j) => {
-        j.preventDefault();
-        const k = document.body.classList.contains('dark');
-        b(k ? 'light' : 'dark');
-        f();
+    themeToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isDark = document.body.classList.contains('dark');
+        setTheme(isDark ? 'light' : 'dark');
     });
 })();

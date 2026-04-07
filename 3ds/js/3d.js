@@ -1,34 +1,34 @@
 // js/3d.js
 (function(){
-    const a = document.getElementById('container3d');
-    const b = document.getElementById('cursorGlow');
-    let c = 0, d = 0, e = 0, f = 0;
-    const g = 8;
+    const container = document.getElementById('container3d');
+    const cursorGlow = document.getElementById('cursorGlow');
+    let targetRotX = 0, targetRotY = 0, currentRotX = 0, currentRotY = 0;
+    const maxRotate = 8;
     
-    function h(){
-        if(!a) return;
-        e += (c - e) * 0.12;
-        f += (d - f) * 0.12;
-        a.style.transform = `perspective(1200px) rotateX(${e}deg) rotateY(${f}deg)`;
-        requestAnimationFrame(h);
+    function animate3d(){
+        if(!container) return;
+        currentRotX += (targetRotX - currentRotX) * 0.12;
+        currentRotY += (targetRotY - currentRotY) * 0.12;
+        container.style.transform = `perspective(1200px) rotateX(${currentRotX}deg) rotateY(${currentRotY}deg)`;
+        requestAnimationFrame(animate3d);
     }
     
-    function i(j){
-        const k = (j.clientX / window.innerWidth) * 2 - 1;
-        const l = (j.clientY / window.innerHeight) * 2 - 1;
-        d = k * g;
-        c = -l * g;
-        if(b){
-            b.style.left = j.clientX + 'px';
-            b.style.top = j.clientY + 'px';
+    function onMouseMove(e){
+        const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        const mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+        targetRotY = mouseX * maxRotate;
+        targetRotX = -mouseY * maxRotate;
+        if(cursorGlow){
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
         }
     }
     
-    document.addEventListener('mousemove', i);
+    document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseleave', () => {
-        c = 0;
-        d = 0;
+        targetRotX = 0;
+        targetRotY = 0;
     });
     
-    h();
+    animate3d();
 })();
